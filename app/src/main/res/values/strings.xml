@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">FoodInfo</string>
+
+    <string name="onboard_title_1">안심하고 \n먹어도 괜찮을까?</string>
+    <string name="onboard_description_1">일상에서 접하는 수많은 식품들, \n혹시 몸에 해롭진 않을까 걱정하셨나요?</string>
+    <string name="onboard_title_2">이젠 똑똑하게 \n구매하세요</string>
+    <string name="onboard_description_2">HACCP 인증 정보와 성분표를 통해 \n믿을 수 있는 식품만 구매해 보세요.</string>
+    <string name="onboard_title_3">그럼, \n시작해 볼까요?</string>
+    <string name="onboard_description_3">15,000개 이상의 식품 정보가 \n당신을 기다리고 있어요!</string>
+    <string name="onboard_skip">건너뛰기</string>
+    <string name="onboard_get_started">바로 시작하기</string>
+
+    <string name="main_search_hint">식품 이름을 입력하세요</string>
+    <string name="main_title">식품정보 앱</string>
+
+    <string name="food_title">상세 정보</string>
+    <string name="food_share">공유하기</string>
+
+    <string name="lottie_onboard_1">https://assets6.lottiefiles.com/packages/lf20_awucen2m.json</string>
+    <string name="lottie_onboard_2">https://assets6.lottiefiles.com/packages/lf20_vjrlq3tj.json</string>
+    <string name="lottie_onboard_3">https://assets1.lottiefiles.com/packages/lf20_sycl9imh.json</string>
+</resources>
