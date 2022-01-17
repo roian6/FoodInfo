@@ -9,6 +9,10 @@
             name="viewModel"
             type="com.david0926.foodinfo.ui.onboard.OnboardViewModel" />
 
+        <variable
+            name="maxPage"
+            type="int" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -26,7 +30,7 @@
             android:text="@string/onboard_skip"
             android:textColor="@color/colorPrimary"
             android:textSize="16sp"
-            app:bindInvisibility="@{viewModel.currentPage != viewModel.maxLength-1}"
+            app:bindInvisibility="@{viewModel.currentPage != maxPage-1}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -47,7 +51,7 @@
             android:layout_marginBottom="1dp"
             android:clickable="false"
             android:focusable="false"
-            android:visibility="@{viewModel.currentPage != viewModel.maxLength-1}"
+            android:visibility="@{viewModel.currentPage != maxPage-1}"
             app:bindTabLayoutMediator="@{vpOnboard}"
             app:layout_constraintBottom_toBottomOf="@+id/bt_onboard_finish"
             app:layout_constraintEnd_toEndOf="parent"
@@ -68,7 +72,7 @@
             android:layout_marginHorizontal="34dp"
             android:layout_marginBottom="34dp"
             android:text="@string/onboard_get_started"
-            app:bindInvisibility="@{viewModel.currentPage == viewModel.maxLength-1}"
+            app:bindInvisibility="@{viewModel.currentPage == maxPage-1}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

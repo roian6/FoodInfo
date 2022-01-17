@@ -26,9 +26,9 @@ class OnboardActivity : BaseActivity<ActivityOnboardBinding>(R.layout.activity_o
         super.onCreate(savedInstanceState)
         binding.viewModel = viewModel
 
-        val fragments = initFragments()
+        val fragments = initOnboardFragments()
 
-        viewModel.maxLength = fragments.size
+        binding.maxPage = fragments.size
         binding.vpOnboard.adapter = ViewPagerAdapter(this, fragments)
         binding.vpOnboard.offscreenPageLimit = fragments.size - 1
 
@@ -50,7 +50,7 @@ class OnboardActivity : BaseActivity<ActivityOnboardBinding>(R.layout.activity_o
         }
     }
 
-    private fun initFragments(): List<Fragment> {
+    private fun initOnboardFragments(): List<Fragment> {
         return listOf(
             OnboardFragment.newInstance(
                 Onboard(

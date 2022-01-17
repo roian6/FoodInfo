@@ -1,6 +1,7 @@
 package com.david0926.foodinfo.ui.main
 
 import androidx.databinding.ObservableArrayList
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -22,11 +23,18 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(private val foodRepository: FoodRepositoryImpl) :
     ViewModel() {
 
-    val result = MutableLiveData<Resource<FoodResponse>>(Resource.loading())
+    private val _result = MutableLiveData<Resource<FoodResponse>>(Resource.loading())
+    val result: LiveData<Resource<FoodResponse>>
+        get() = _result
+
+    //keep public due to DataBinding
+    val searchText = MutableLiveData("")
     val foodList = ObservableArrayList<Food>()
 
-    val searchText = MutableLiveData("")
-    var itemsPerPage = 10
+    private var _itemsPerPage = 10
+    val itemsPerPage: Int
+        get() = _itemsPerPage
+
     private var currentPage = 1
 
     init {
@@ -42,9 +50,9 @@ class MainViewModel @Inject constructor(private val foodRepository: FoodReposito
         )
 
         viewModelScope.launch(CoroutineExceptionHandler { _, e ->
-            result.value = Resource.error(e.stackTraceToString(), null)
+            _result.value = Resource.error(e.stackTraceToString(), null)
         }) {
-            result.value = Resource.loading()
+            _result.value = Resource.loading()
             val response = withContext(Dispatchers.IO) { foodRepository.getFoods(foodRequest) }
             if (response.isSuccessful) {
                 val body = response.body() ?: return@launch
@@ -53,11 +61,11 @@ class MainViewModel @Inject constructor(private val foodRepository: FoodReposito
                     return@launch
                 }
 
-                result.value = Resource.success(body)
+                _result.value = Resource.success(body)
                 if (currentPage == 1) foodList.clear()
                 foodList.addAll(body.list)
 
-            } else result.value = Resource.error(response.errorBody().toString(), null)
+            } else _result.value = Resource.error(response.errorBody().toString(), null)
         }
     }
 
