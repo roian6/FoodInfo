@@ -9,9 +9,9 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
+private val Context.dataStore by preferencesDataStore(name = "datastore")
 
 class DataStoreUtil @Inject constructor(@ApplicationContext appContext: Context) {
-    private val Context.dataStore by preferencesDataStore(name = "datastore")
 
     companion object {
         val KEY_FIRST_LAUNCH = booleanPreferencesKey("first_launch")
