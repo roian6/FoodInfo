@@ -1,7 +1,7 @@
-package com.david0926.foodinfo.base
+package com.david0926.foodinfo
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
-class BaseApplication : Application()
+class MyApplication : Application()
