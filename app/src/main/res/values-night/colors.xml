@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <color name="textColor">@color/materialGray0</color>
-    <color name="textColorSecondary">@color/materialGray4</color>
-    <color name="backgroundColor">@color/flatBlack</color>
-    <color name="cardBackgroundColor">@color/materialGray9</color>
-    <color name="editTextBackgroundColor">@color/materialGray9</color>
-</resources>

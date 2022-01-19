@@ -18,7 +18,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/backgroundColor"
+        android:background="?attr/backgroundColor"
         tools:context=".ui.onboard.OnboardActivity">
 
         <TextView
@@ -28,7 +28,7 @@
             android:fontFamily="@font/font_bold"
             android:padding="24dp"
             android:text="@string/onboard_skip"
-            android:textColor="@color/colorPrimary"
+            android:textColor="?attr/colorPrimary"
             android:textSize="16sp"
             app:bindInvisibility="@{viewModel.currentPage != maxPage-1}"
             app:layout_constraintEnd_toEndOf="parent"
