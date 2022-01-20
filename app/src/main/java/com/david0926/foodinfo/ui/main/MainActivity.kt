@@ -25,7 +25,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     lateinit var dataStoreUtil: DataStoreUtil
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        beforeSetContentView = { installSplashScreen() }
+        installSplashScreen()
         super.onCreate(savedInstanceState)
         binding.viewModel = viewModel
         checkOnboard()
