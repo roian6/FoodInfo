@@ -57,7 +57,7 @@ class MainViewModel @Inject constructor(private val foodRepository: FoodReposito
             if (response.isSuccessful) {
                 val body = response.body() ?: return@launch
                 if (body.resultCode != "OK") {
-                    Resource.error(body.resultMessage, body)
+                    _result.value = Resource.error(body.resultMessage, body)
                     return@launch
                 }
 
