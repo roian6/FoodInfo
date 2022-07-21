@@ -37,11 +37,7 @@ class MainViewModel @Inject constructor(private val foodRepository: FoodReposito
 
     private var currentPage = 1
 
-    init {
-        getFoods()
-    }
-
-    private fun getFoods() {
+    fun getFoods() {
         val foodRequest = FoodRequest(
             ServiceKey = ApiKeyUtil.getApiKey(),
             prdlstNm = searchText.value,
@@ -60,8 +56,10 @@ class MainViewModel @Inject constructor(private val foodRepository: FoodReposito
                     _result.value = Resource.error(body.resultMessage, body)
                     return@launch
                 }
-
                 _result.value = Resource.success(body)
+
+                if (foodRequest.prdlstNm != searchText.value) return@launch
+
                 if (currentPage == 1) foodList.clear()
                 foodList.addAll(body.list)
 

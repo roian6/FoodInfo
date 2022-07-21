@@ -32,6 +32,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
         binding.rvMain.layoutManager = GridLayoutManager(this, 2)
         binding.rvMain.adapter = MainRecyclerAdapter()
+
+        viewModel.getFoods()
     }
 
     override fun onBackPressed() {
