@@ -4,10 +4,24 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class FoodResponse(
-    val pageNo: String,
-    val resultCode: String,
-    val totalCount: String,
-    val list: List<Food>,
-    val resultMessage: String,
-    val numOfRows: String,
-)
+    val header: Header,
+    val body: Body,
+) {
+    @JsonClass(generateAdapter = true)
+    data class Header(
+        val resultCode: String,
+        val resultMessage: String,
+    )
+
+    @JsonClass(generateAdapter = true)
+    data class Body(
+        val totalCount: String,
+        val items: List<Items>,
+        val numOfRows: String,
+    )
+
+    @JsonClass(generateAdapter = true)
+    data class Items(
+        val item: Food,
+    )
+}

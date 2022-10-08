@@ -46,22 +46,23 @@ class MainViewModel @Inject constructor(private val foodRepository: FoodReposito
         )
 
         viewModelScope.launch(CoroutineExceptionHandler { _, e ->
+            e.printStackTrace()
             _result.value = Resource.error(e.stackTraceToString(), null)
         }) {
             _result.value = Resource.loading()
             val response = withContext(Dispatchers.IO) { foodRepository.getFoods(foodRequest) }
             if (response.isSuccessful) {
-                val body = response.body() ?: return@launch
-                if (body.resultCode != "OK") {
-                    _result.value = Resource.error(body.resultMessage, body)
+                val res = response.body() ?: return@launch
+                if (res.header.resultCode != "OK") {
+                    _result.value = Resource.error(res.header.resultMessage, res)
                     return@launch
                 }
-                _result.value = Resource.success(body)
+                _result.value = Resource.success(res)
 
                 if (foodRequest.prdlstNm != searchText.value) return@launch
 
                 if (currentPage == 1) foodList.clear()
-                foodList.addAll(body.list)
+                foodList.addAll(res.body.items.map { it.item })
 
             } else _result.value = Resource.error(response.errorBody().toString(), null)
         }
