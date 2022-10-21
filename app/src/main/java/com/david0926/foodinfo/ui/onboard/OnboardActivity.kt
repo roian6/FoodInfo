@@ -1,14 +1,15 @@
 package com.david0926.foodinfo.ui.onboard
 
 import android.os.Bundle
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.david0926.foodinfo.R
-import com.david0926.foodinfo.base.BaseActivity
 import com.david0926.foodinfo.data.model.Onboard
 import com.david0926.foodinfo.databinding.ActivityOnboardBinding
-import com.david0926.foodinfo.ui.all.ViewPagerAdapter
+import com.david0926.foodinfo.ui.common.BaseActivity
+import com.david0926.foodinfo.ui.common.ViewPagerAdapter
 import com.david0926.foodinfo.util.DataStoreUtil
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -34,13 +35,21 @@ class OnboardActivity : BaseActivity<ActivityOnboardBinding>(R.layout.activity_o
 
         binding.btOnboardSkip.setOnClickListener { finish() }
         binding.btOnboardFinish.setOnClickListener { finish() }
+
+        onBackPressedDispatcher.addCallback(object: OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                val page = viewModel.currentPage.value!!
+                if (page == 0) finish()
+                else binding.vpOnboard.currentItem = page - 1
+            }
+        })
     }
 
-    override fun onBackPressed() {
-        val page = viewModel.currentPage.value!!
-        if (page == 0) super.onBackPressed()
-        else binding.vpOnboard.currentItem = page - 1
-    }
+//    override fun onBackPressed() {
+//        val page = viewModel.currentPage.value!!
+//        if (page == 0) super.onBackPressed()
+//        else binding.vpOnboard.currentItem = page - 1
+//    }
 
     override fun finish() {
         lifecycleScope.launch {

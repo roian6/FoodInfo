@@ -1,4 +1,4 @@
-package com.david0926.foodinfo.base
+package com.david0926.foodinfo.ui.common
 
 import android.os.Bundle
 import android.view.LayoutInflater

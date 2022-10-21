@@ -1,4 +1,4 @@
-package com.david0926.foodinfo.ui.all
+package com.david0926.foodinfo.ui.common
 
 import android.view.View
 import android.widget.ImageView

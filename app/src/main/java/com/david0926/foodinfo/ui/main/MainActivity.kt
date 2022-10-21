@@ -8,8 +8,8 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.david0926.foodinfo.R
-import com.david0926.foodinfo.base.BaseActivity
 import com.david0926.foodinfo.databinding.ActivityMainBinding
+import com.david0926.foodinfo.ui.common.BaseActivity
 import com.david0926.foodinfo.ui.onboard.OnboardActivity
 import com.david0926.foodinfo.util.DataStoreUtil
 import dagger.hilt.android.AndroidEntryPoint

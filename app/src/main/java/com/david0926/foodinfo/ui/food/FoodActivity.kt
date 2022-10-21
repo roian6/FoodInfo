@@ -3,10 +3,10 @@ package com.david0926.foodinfo.ui.food
 import android.content.Intent
 import android.os.Bundle
 import com.david0926.foodinfo.R
-import com.david0926.foodinfo.base.BaseActivity
 import com.david0926.foodinfo.data.model.Food
 import com.david0926.foodinfo.databinding.ActivityFoodBinding
-import com.david0926.foodinfo.ui.all.ViewPagerAdapter
+import com.david0926.foodinfo.ui.common.BaseActivity
+import com.david0926.foodinfo.ui.common.ViewPagerAdapter
 
 class FoodActivity : BaseActivity<ActivityFoodBinding>(R.layout.activity_food) {
 

@@ -2,9 +2,9 @@ package com.david0926.foodinfo.ui.onboard
 
 import android.os.Bundle
 import com.david0926.foodinfo.R
-import com.david0926.foodinfo.base.BaseFragment
 import com.david0926.foodinfo.data.model.Onboard
 import com.david0926.foodinfo.databinding.FragmentOnboardBinding
+import com.david0926.foodinfo.ui.common.BaseFragment
 
 class OnboardFragment : BaseFragment<FragmentOnboardBinding>(R.layout.fragment_onboard) {
 
