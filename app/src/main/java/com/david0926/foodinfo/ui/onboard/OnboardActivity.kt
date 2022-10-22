@@ -1,7 +1,6 @@
 package com.david0926.foodinfo.ui.onboard
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
@@ -34,8 +33,6 @@ class OnboardActivity : BaseActivity<ActivityOnboardBinding>(R.layout.activity_o
         binding.maxPage = fragments.size
         binding.vpOnboard.adapter = ViewPagerAdapter(this, fragments)
         binding.vpOnboard.offscreenPageLimit = fragments.size - 1
-
-        Toast.makeText(this, binding.maxPage.toString() + " " + viewModel.currentPage.value!!.toString(), Toast.LENGTH_SHORT).show()
 
         binding.vpOnboard.registerOnPageChangeCallback(object :
             ViewPager2.OnPageChangeCallback() {
