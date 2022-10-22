@@ -1,10 +1,12 @@
 package com.david0926.foodinfo.ui.onboard
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.viewpager2.widget.ViewPager2
 import com.david0926.foodinfo.R
 import com.david0926.foodinfo.data.model.Onboard
 import com.david0926.foodinfo.databinding.ActivityOnboardBinding
@@ -33,10 +35,20 @@ class OnboardActivity : BaseActivity<ActivityOnboardBinding>(R.layout.activity_o
         binding.vpOnboard.adapter = ViewPagerAdapter(this, fragments)
         binding.vpOnboard.offscreenPageLimit = fragments.size - 1
 
+        Toast.makeText(this, binding.maxPage.toString() + " " + viewModel.currentPage.value!!.toString(), Toast.LENGTH_SHORT).show()
+
+        binding.vpOnboard.registerOnPageChangeCallback(object :
+            ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                viewModel.setCurrentPage(position)
+            }
+        })
+
         binding.btOnboardSkip.setOnClickListener { finish() }
         binding.btOnboardFinish.setOnClickListener { finish() }
 
-        onBackPressedDispatcher.addCallback(object: OnBackPressedCallback(true) {
+        onBackPressedDispatcher.addCallback(object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 val page = viewModel.currentPage.value!!
                 if (page == 0) finish()
@@ -44,12 +56,6 @@ class OnboardActivity : BaseActivity<ActivityOnboardBinding>(R.layout.activity_o
             }
         })
     }
-
-//    override fun onBackPressed() {
-//        val page = viewModel.currentPage.value!!
-//        if (page == 0) super.onBackPressed()
-//        else binding.vpOnboard.currentItem = page - 1
-//    }
 
     override fun finish() {
         lifecycleScope.launch {
