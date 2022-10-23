@@ -2,6 +2,7 @@ package com.david0926.foodinfo.ui.main
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.asLiveData
@@ -34,13 +35,16 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         binding.rvMain.adapter = MainRecyclerAdapter()
 
         viewModel.getFoods()
-    }
 
-    override fun onBackPressed() {
-        binding.rvMain.run {
-            if (canScrollVertically(-1)) smoothScrollToPosition(0)
-            else super.onBackPressed()
-        }
+        // updated
+        onBackPressedDispatcher.addCallback(object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                binding.rvMain.run {
+                    if (canScrollVertically(-1)) smoothScrollToPosition(0)
+                    else finish()
+                }
+            }
+        })
     }
 
     private fun checkOnboard() {
