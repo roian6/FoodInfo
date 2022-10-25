@@ -46,7 +46,7 @@ jobs:
     - name: Generate Credential File for Fastlane
       run: |
         echo "$PLAY_STORE_CREDENTIALS" > play-store-credentials.json.b64
-        base64 -d -i fastlane/play-store-credentials.json.b64 > play-store-credentials.json
+        base64 -d -i play-store-credentials.json.b64 > play-store-credentials.json
       env:
         PLAY_STORE_CREDENTIALS: ${{ secrets.PLAY_STORE_CREDENTIALS }}
 
