@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<defaults>
+  <entry>
+    <key>is_update</key>
+    <value>false</value>
+  </entry>
+  <entry>
+    <key>notice</key>
+    <value>FoodInfo에 오신 것을 환영합니다.</value>
+  </entry>
+</defaults>
