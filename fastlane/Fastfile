@@ -18,6 +18,6 @@ default_platform(:android)
 platform :android do
   desc "Submit a new Internal Build to Play Store"
   lane :internal_release do
-    upload_to_play_store(track: 'internal', aab: 'app/release/app-release.aab')
+    upload_to_play_store(track: 'internal', aab: 'app/build/outputs/bundle/release/app-release.aab')
   end
 end
