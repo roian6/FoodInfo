@@ -53,7 +53,7 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Build with Gradle
-      run: ./gradlew :app:release
+      run: ./gradlew :app:bundleRelease
       
     - name: Submit a new Internal Build to Play Store
       run: bundle exec fastlane internal_release
