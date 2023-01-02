@@ -63,6 +63,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - name: Submit a new Internal Build to Play Store
         run: bundle exec fastlane internal
     if: ${{ inputs.track == 'internal' }}
@@ -71,6 +72,7 @@ jobs:
 #    needs: build
 #    runs-on: ubuntu-latest
 #    steps:
+#      - uses: actions/checkout@v3
 #      - name: Submit a new Closed Beta Build to Play Store
 #        run: bundle exec fastlane closed_beta
 #    if: ${{ inputs.track == 'alpha(closed)' }}
@@ -79,6 +81,7 @@ jobs:
 #    needs: build
 #    runs-on: ubuntu-latest
 #    steps:
+#      - uses: actions/checkout@v3
 #      - name: Submit a new Open Beta Build to Play Store
 #      run: bundle exec fastlane open_beta
 #    if: ${{ inputs.track == 'beta(open)' }}
@@ -87,6 +90,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - name: Submit a new Production Build to Play Store
         run: bundle exec fastlane production
     if: ${{ inputs.track == 'production' }}
