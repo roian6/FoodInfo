@@ -16,8 +16,29 @@
 default_platform(:android)
 
 platform :android do
-  desc "Submit a new Internal Build to Play Store"
-  lane :internal_release do
-    upload_to_play_store(track: 'internal', aab: 'app/build/outputs/bundle/release/app-release.aab')
-  end
+
+    desc "Submit a internal build to Google Play"
+    lane :internal do
+        gradle(task: 'bundle', build_type: 'Release', flags: '--no-daemon')
+        upload_to_play_store(track: 'internal')
+    end
+
+#     desc "Submit a alpha build to Google Play"
+#     lane :internal do
+#         gradle(task: 'bundle', build_type: 'Release', flags: '--no-daemon')
+#         upload_to_play_store(track: 'alpha')
+#     end
+#
+#     desc "Submit a beta build to Google Play"
+#     lane :internal do
+#         gradle(task: 'bundle', build_type: 'Release', flags: '--no-daemon')
+#         upload_to_play_store(track: 'beta')
+#     end
+
+    desc "Submit a production build to Google Play"
+    lane :production do
+        gradle(task: 'bundle', build_type: 'Release', flags: '--no-daemon')
+        upload_to_play_store
+    end
+
 end
