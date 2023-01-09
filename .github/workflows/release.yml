@@ -1,0 +1,24 @@
+name: Release project
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Read versionName property
+        id: release_version
+        uses: christian-draeger/read-properties@1.1.1
+        with:
+          path: './version.properties'
+          properties: 'versionName'
+
+      - name: Create a GitHub release
+        uses: softprops/action-gh-release@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          tag_name: ${{ steps.release_version.outputs.versionName }}
+          name: Release ${{ steps.release_version.outputs.versionName }}
