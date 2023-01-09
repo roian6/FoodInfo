@@ -21,7 +21,7 @@ android {
         applicationId "com.david0926.foodinfo"
         minSdk 23
         targetSdk 33
-        versionCode versionCode (System.getenv("BUILD_NUMBER") as Integer ?: 10000)
+        versionCode (System.getenv("BUILD_NUMBER") as Integer ?: 10000)
         versionName versionProperties['versionName']
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
