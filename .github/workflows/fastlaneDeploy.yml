@@ -36,6 +36,7 @@ jobs:
 
       - name: Setting env
         run: |
+          echo "BUILD_NUMBER=$GITHUB_RUN_NUMBER" >> $GITHUB_ENV
           echo "STORE_PASSWORD=${{ secrets.STORE_PASSWORD }}" >> $GITHUB_ENV
           echo "KEY_ALIAS=${{ secrets.KEY_ALIAS }}" >> $GITHUB_ENV 
           echo "KEY_PASSWORD=${{ secrets.KEY_PASSWORD }}" >> $GITHUB_ENV
@@ -52,7 +53,6 @@ jobs:
           source version.properties
           cd fastlane/metadata/android/ko-KR/changelogs
           mv $versionName.txt $BUILD_NUMBER.txt
-          cat $BUILD_NUMBER.txt
 
       - name: Submit to internal track
         run: bundle exec fastlane internal
