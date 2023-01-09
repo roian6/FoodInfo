@@ -50,7 +50,9 @@ jobs:
       - name: Apply changelogs
         run: |
           source version.properties
-          mv fastlane/metadata/android/ko-KR/changelogs/$versionName.txt $BUILD_NUMBER.txt
+          cd fastlane/metadata/android/ko-KR/changelogs
+          mv $versionName.txt $BUILD_NUMBER.txt
+          cat $BUILD_NUMBER.txt
 
       - name: Submit to internal track
         run: bundle exec fastlane internal
