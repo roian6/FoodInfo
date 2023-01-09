@@ -11,6 +11,9 @@ Properties properties = new Properties()
 properties.load(project.rootProject.file('local.properties').newDataInputStream())
 def apiKey = properties.getProperty('apiKey')
 
+def versionProperties = new Properties()
+versionProperties.load(new FileInputStream(file("../version.properties")))
+
 android {
     compileSdk 33
 
@@ -18,8 +21,8 @@ android {
         applicationId "com.david0926.foodinfo"
         minSdk 23
         targetSdk 33
-        versionCode 5
-        versionName "1.1"
+        versionCode versionCode (System.getenv("BUILD_NUMBER") as Integer ?: 10000)
+        versionName versionProperties['versionName']
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

@@ -47,6 +47,11 @@ jobs:
         env:
           PLAY_STORE_CREDENTIALS: ${{ secrets.PLAY_STORE_CREDENTIALS }}
 
+      - name: Apply changelogs
+        run: |
+          source version.properties
+          mv fastlane/metadata/android/ko-KR/changelogs/$versionName.txt $BUILD_NUMBER.txt
+
       - name: Submit to internal track
         run: bundle exec fastlane internal
         if: ${{ inputs.track == 'internal' }}
