@@ -16,9 +16,17 @@ jobs:
           path: './version.properties'
           properties: 'versionName'
 
-      - name: Create a GitHub release
-        uses: softprops/action-gh-release@v1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          tag_name: ${{ steps.release_version.outputs.versionName }}
-          name: Release ${{ steps.release_version.outputs.versionName }}
+#      - name: Create a GitHub release
+#        uses: softprops/action-gh-release@v1
+#        with:
+#          token: ${{ secrets.GITHUB_TOKEN }}
+#          tag_name: ${{ steps.release_version.outputs.versionName }}
+#          name: Release ${{ steps.release_version.outputs.versionName }}
+
+    - name: Create a GitHub release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ steps.release_version.outputs.versionName }}
+        release_name: Release ${{ steps.release_version.outputs.versionName }}
