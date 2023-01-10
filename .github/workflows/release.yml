@@ -17,13 +17,6 @@ jobs:
           properties: 'versionName'
 
       - name: Create a GitHub release
-        uses: softprops/action-gh-release@v1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          tag_name: ${{ steps.release_version.outputs.versionName }}
-          name: Release ${{ steps.release_version.outputs.versionName }}
-
-      - name: Write release note
         uses: release-drafter/release-drafter@v5
         with:
           config-name: config.yml

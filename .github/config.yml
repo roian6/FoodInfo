@@ -23,13 +23,3 @@ change-template: '- $TITLE @$AUTHOR (#$NUMBER) '
 template: |
   ## Uncategorized
   $CHANGES
-
-# 각 pr의 라벨에 따라서 버전 업 기준이 달라짐.
-version-resolver:
-  major:
-    labels:
-      - "features"
-  minor:
-    labels:
-      - "modify"
-  default: patch
