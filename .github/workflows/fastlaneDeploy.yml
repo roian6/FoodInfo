@@ -36,7 +36,7 @@ jobs:
 
       - name: Setting env
         run: |
-          echo "BUILD_NUMBER=$GITHUB_RUN_NUMBER" >> $GITHUB_ENV
+          echo "BUILD_NUMBER=$(($GITHUB_RUN_NUMBER+10000))" >> $GITHUB_ENV
           echo "STORE_PASSWORD=${{ secrets.STORE_PASSWORD }}" >> $GITHUB_ENV
           echo "KEY_ALIAS=${{ secrets.KEY_ALIAS }}" >> $GITHUB_ENV 
           echo "KEY_PASSWORD=${{ secrets.KEY_PASSWORD }}" >> $GITHUB_ENV
@@ -48,11 +48,17 @@ jobs:
         env:
           PLAY_STORE_CREDENTIALS: ${{ secrets.PLAY_STORE_CREDENTIALS }}
 
+      - name: Read versionName property
+        id: release_version
+        uses: christian-draeger/read-properties@1.1.1
+        with:
+          path: './version.properties'
+          properties: 'versionName'
+
       - name: Apply changelogs
+        working-directory: ./fastlane/metadata/android/ko-KR/changelogs
         run: |
-          source version.properties
-          cd fastlane/metadata/android/ko-KR/changelogs
-          mv $versionName.txt $BUILD_NUMBER.txt
+          mv ${{ steps.release_version.outputs.versionName }}.txt $BUILD_NUMBER.txt
 
       - name: Submit to internal track
         run: bundle exec fastlane internal
