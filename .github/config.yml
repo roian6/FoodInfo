@@ -1,5 +1,5 @@
-name-template: "Release $RESOLVED_VERSION"
-tag-template: "$RESOLVED_VERSION"
+name-template: "Release $INPUT_VERSION"
+tag-template: "$INPUT_VERSION"
 
 # 해당 라벨이 붙은 pr은 변경내용에 추가 안함.
 exclude-labels:
