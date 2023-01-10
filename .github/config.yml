@@ -1,5 +1,5 @@
-name-template: "Release $INPUT_VERSION"
-tag-template: "$INPUT_VERSION"
+name-template: "Release $RESOLVED_VERSION"
+tag-template: "$RESOLVED_VERSION"
 
 # 해당 라벨이 붙은 pr은 변경내용에 추가 안함.
 exclude-labels:
@@ -23,3 +23,13 @@ change-template: '- $TITLE @$AUTHOR (#$NUMBER) '
 template: |
   ## Uncategorized
   $CHANGES
+
+# 각 pr의 라벨에 따라서 버전 업 기준이 달라짐.
+version-resolver:
+  major:
+    labels:
+      - "features"
+  minor:
+    labels:
+      - "modify"
+  default: patch
