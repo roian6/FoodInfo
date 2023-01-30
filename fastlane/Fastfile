@@ -18,6 +18,11 @@ default_platform(:android)
 platform :android do
 
     desc "Submit to internal track"
+    lane :update_metadata do
+        upload_to_play_store(skip_upload_aab: true)
+    end
+
+    desc "Submit to internal track"
     lane :internal do
         gradle(task: 'bundle', build_type: 'Release', flags: '--no-daemon')
         upload_to_play_store(track: 'internal')

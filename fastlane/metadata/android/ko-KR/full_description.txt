@@ -9,7 +9,7 @@ DI
 - Hilt
 
 Data
-- Coroutines, Retrofit2 (OkHttp3, Moshi), Jetpack DataStore
+- Coroutines, Retrofit2(OkHttp3), Jetpack DataStore
 
 UI
 - Glide, Lottie, Jetpack SplashScreen
