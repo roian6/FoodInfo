@@ -17,9 +17,9 @@ default_platform(:android)
 
 platform :android do
 
-    desc "Submit to internal track"
+    desc "Update metadata"
     lane :update_metadata do
-        upload_to_play_store(skip_upload_aab: true)
+        upload_to_play_store(skip_upload_aab: true, skip_upload_changelogs: true)
     end
 
     desc "Submit to internal track"

@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       track:
-        description: 'Select Google Play deploy track'
+        description: '배포할 Google Play 트랙 선택'
         required: true
         default: 'internal'
         type: choice
@@ -13,6 +13,11 @@ on:
 #          - alpha(closed)
 #          - beta(open)
           - production
+      metadata:
+        description: '배포 없이 스토어 등록정보만 수정'
+        required: false
+        type: boolean
+
 
 jobs:
   deploy:
@@ -60,18 +65,22 @@ jobs:
         run: |
           mv ${{ steps.release_version.outputs.versionName }}.txt $BUILD_NUMBER.txt
 
+      - name: Update Google Play metadata
+        run: bundle exec fastlane update_metadata
+        if: ${{ inputs.metadata }}
+
       - name: Submit to internal track
         run: bundle exec fastlane internal
-        if: ${{ inputs.track == 'internal' }}
+        if: ${{ !inputs.metadata && inputs.track == 'internal' }}
 
 #      - name: Submit to alpha(closed) track
 #        run: bundle exec fastlane alpha
-#        if: ${{ inputs.track == 'alpha(closed)' }}
+#        if: ${{ !inputs.metadata && inputs.track == 'alpha(closed)' }}
 #
 #      - name: Submit to beta(open) track
 #        run: bundle exec fastlane beta
-#        if: ${{ inputs.track == 'beta(open)' }}
+#        if: ${{ !inputs.metadata && inputs.track == 'beta(open)' }}
 
       - name: Submit to production track
         run: bundle exec fastlane production
-        if: ${{ inputs.track == 'production' }}
+        if: ${{ !inputs.metadata && inputs.track == 'production' }}
