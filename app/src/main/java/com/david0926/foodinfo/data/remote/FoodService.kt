@@ -6,7 +6,7 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface FoodService {
-    @GET("/B553748/CertImgListService/getCertImgListService")
+    @GET("/B553748/CertImgListServiceV2/getCertImgListServiceV2")
     suspend fun getFoods(
         @Query("ServiceKey") ServiceKey: String?,
         @Query("prdlstReportNo") prdlstReportNo: String?,

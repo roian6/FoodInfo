@@ -15,12 +15,12 @@ def versionProperties = new Properties()
 versionProperties.load(new FileInputStream(file("../version.properties")))
 
 android {
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.david0926.foodinfo"
         minSdk 23
-        targetSdk 33
+        targetSdk 34
         versionCode (System.getenv("BUILD_NUMBER") as Integer ?: 10000)
         versionName versionProperties['versionName']
 
