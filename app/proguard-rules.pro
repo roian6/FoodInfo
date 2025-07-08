@@ -24,3 +24,8 @@
 -dontwarn com.crashlytics.**
 -keepattributes SourceFile,LineNumberTable,*Annotation*
 -keep class com.crashlytics.android.**
+
+-dontwarn okhttp3.internal.platform.**
+-dontwarn org.conscrypt.**
+-dontwarn org.bouncycastle.**
+-dontwarn org.openjsse.**
